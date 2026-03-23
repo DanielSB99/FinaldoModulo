@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('estudio_id')->constrained('estudios_table')->onDelete('cascade');//apaga o jogo se apagar o estudio
+            $table->foreignId('estudio_id')->constrained('estudios_table')->onDelete('cascade');
             $table->string('nome_do_jogo');
             $table->string('imagem_capa')->nullable();
             $table->date('data_lancamento')->nullable();
