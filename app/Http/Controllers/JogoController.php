@@ -73,8 +73,7 @@ class JogoController extends Controller
 
         $caminho = null;
         if ($request->hasFile('imagem_capa')) {
-            $caminho = Storage::putFile('public/capas', $request->file('imagem_capa'));
-            $caminho = str_replace('public/', '', $caminho);
+            $caminho = Storage::putFile('capas', $request->file('imagem_capa'));
         }
 
         Jogo::create([
@@ -115,10 +114,9 @@ class JogoController extends Controller
 
         if ($request->hasFile('imagem_capa')) {
             if ($jogo->imagem_capa) {
-                Storage::delete('public/' . $jogo->imagem_capa);
+                Storage::delete($jogo->imagem_capa);
             }
-            $caminho = Storage::putFile('public/capas', $request->file('imagem_capa'));
-            $caminho = str_replace('public/', '', $caminho);
+            $caminho = Storage::putFile('capas', $request->file('imagem_capa'));
         }
 
         $jogo->update([
@@ -139,7 +137,7 @@ class JogoController extends Controller
         $jogo = Jogo::findOrFail($id);
 
         if ($jogo->imagem_capa) {
-            Storage::delete('public/' . $jogo->imagem_capa);
+            Storage::delete($jogo->imagem_capa);
         }
 
         $jogo->delete();

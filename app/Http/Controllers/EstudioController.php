@@ -46,8 +46,8 @@ class EstudioController extends Controller
 
         $caminho = null;
         if ($request->hasFile('logotipo')) {
-            $caminho = Storage::putFile('public/logos', $request->file('logotipo'));
-            $caminho = str_replace('public/', '', $caminho);
+            $caminho = Storage::putFile('logos', $request->file('logotipo'));
+
         }
 
         Estudio::create([
@@ -81,10 +81,9 @@ class EstudioController extends Controller
         $caminho = $estudio->logotipo;
         if ($request->hasFile('logotipo')) {
             if ($estudio->logotipo) {
-                Storage::delete('public/' . $estudio->logotipo);
+                Storage::delete($estudio->logotipo);
             }
-            $caminho = Storage::putFile('public/logos', $request->file('logotipo'));
-            $caminho = str_replace('public/', '', $caminho);
+            $caminho = Storage::putFile('logos', $request->file('logotipo'));
         }
 
         $estudio->update([
@@ -102,7 +101,7 @@ class EstudioController extends Controller
         $estudio = Estudio::findOrFail($id);
 
         if ($estudio->logotipo) {
-            Storage::delete('public/' . $estudio->logotipo);
+            Storage::delete($estudio->logotipo);
         }
 
         $estudio->delete();
