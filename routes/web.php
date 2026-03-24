@@ -62,3 +62,8 @@ Route::post('/jogos', [JogoController::class, 'store'])
 Route::delete('/jogos/{id}', [JogoController::class, 'destroy'])
     ->middleware(['auth', 'admin'])
     ->name('jogos.destroy');
+
+
+Route::fallback(function () {
+    return view('fallback');
+});
